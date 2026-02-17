@@ -31,22 +31,30 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#020617] overflow-x-hidden selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 text-slate-100 overflow-x-hidden selection:bg-amber-500/30 selection:text-amber-200 font-sans">
       {/* Mystical Background Layers */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-amber-900/10 rounded-full blur-[160px]"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-900/10 rounded-full blur-[160px]"></div>
-        <div className="absolute top-[30%] left-[40%] w-[30%] h-[30%] bg-purple-900/5 rounded-full blur-[100px]"></div>
+      {/* Mystical Background Layers */}
+      <div className="bg-mystical"></div>
+      <div className="stars"></div>
+
+      {/* Decorative Elements */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-900/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-amber-900/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="relative z-10 w-full max-w-5xl">
         {step === 'input' && (
           <div className="animate-fade-in flex flex-col items-center">
-            <header className="text-center mb-10 space-y-2">
-              <h1 className="text-3xl md:text-5xl font-serif font-bold text-amber-500 tracking-tight">
-                제갈량의 <span className="text-slate-100">천기누설</span>
+            <header className="text-center mb-12 space-y-4 relative z-10">
+              <h1 className="text-4xl md:text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-500 to-amber-200 tracking-tight drop-shadow-sm animate-fade-in">
+                제갈량의 <span className="text-slate-100 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">천기누설</span>
               </h1>
-              <div className="h-px w-24 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto"></div>
+              <div className="flex items-center justify-center gap-4 opacity-70">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-amber-500"></div>
+                <span className="text-xs font-serif tracking-[0.3em] text-amber-500 uppercase">Master Zhuge's Strategy</span>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-amber-500"></div>
+              </div>
             </header>
             <InputForm onSubmit={handleStartAnalysis} />
           </div>
@@ -56,12 +64,7 @@ const App: React.FC = () => {
 
         {step === 'result' && result && (
           <div className="animate-fade-in">
-             <header className="text-center mb-12">
-              <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-100 tracking-tight">
-                분석 <span className="text-amber-500">완료</span>
-              </h1>
-              <p className="text-slate-500 mt-2">하늘의 뜻이 담긴 책략을 확인하십시오</p>
-            </header>
+
             <AnalysisDashboard result={result} onReset={handleReset} />
           </div>
         )}
