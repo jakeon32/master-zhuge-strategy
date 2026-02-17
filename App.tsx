@@ -33,7 +33,6 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 text-slate-100 overflow-x-hidden selection:bg-amber-500/30 selection:text-amber-200 font-sans">
       {/* Mystical Background Layers */}
-      {/* Mystical Background Layers */}
       <div className="bg-mystical"></div>
       <div className="stars"></div>
 
