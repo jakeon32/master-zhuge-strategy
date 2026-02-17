@@ -5,11 +5,15 @@ import { getFortuneAnalysis } from './services/claudeService';
 import InputForm from './components/InputForm';
 import AnalysisDashboard from './components/AnalysisDashboard';
 import LoadingScreen from './components/LoadingScreen';
+import ParticleCanvas from './components/ParticleCanvas';
+import AmbientSound from './components/AmbientSound';
+import AudioToggle from './components/AudioToggle';
 
 const App: React.FC = () => {
   const [step, setStep] = useState<'input' | 'loading' | 'result'>('input');
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [audioPlaying, setAudioPlaying] = useState(false);
 
   const handleStartAnalysis = async (info: BirthInfo) => {
     setStep('loading');
@@ -35,6 +39,9 @@ const App: React.FC = () => {
       {/* Mystical Background Layers */}
       <div className="bg-mystical"></div>
       <div className="stars"></div>
+      <ParticleCanvas />
+      <AmbientSound isPlaying={audioPlaying} />
+      <AudioToggle isPlaying={audioPlaying} onToggle={() => setAudioPlaying(prev => !prev)} />
 
       {/* Decorative Elements */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
