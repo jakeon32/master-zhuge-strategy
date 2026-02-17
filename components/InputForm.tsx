@@ -11,6 +11,9 @@ type FormStep = 'welcome' | 'name' | 'gender_date' | 'time_place';
 const InputForm: React.FC<Props> = ({ onSubmit }) => {
   const [step, setStep] = useState<FormStep>('welcome');
   const [isUnknownTime, setIsUnknownTime] = useState(false);
+  const [birthYear, setBirthYear] = useState('');
+  const [birthMonth, setBirthMonth] = useState('');
+  const [birthDay, setBirthDay] = useState('');
   const [formData, setFormData] = useState<BirthInfo>({
     name: '',
     birthDate: '',
@@ -18,6 +21,24 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
     birthPlace: '',
     gender: 'male',
   });
+
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
+  const months = Array.from({ length: 12 }, (_, i) => i + 1);
+  const getDaysInMonth = (y: string, m: string) => {
+    if (!y || !m) return Array.from({ length: 31 }, (_, i) => i + 1);
+    return Array.from({ length: new Date(Number(y), Number(m), 0).getDate() }, (_, i) => i + 1);
+  };
+
+  const updateBirthDate = (y: string, m: string, d: string) => {
+    setBirthYear(y); setBirthMonth(m); setBirthDay(d);
+    if (y && m && d) {
+      const date = `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+      setFormData(prev => ({ ...prev, birthDate: date }));
+    } else {
+      setFormData(prev => ({ ...prev, birthDate: '' }));
+    }
+  };
 
   const nextStep = () => {
     if (step === 'welcome') setStep('name');
@@ -139,13 +160,41 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
                 </button>
               </div>
 
-              <input
-                required
-                type="date"
-                className="w-full bg-slate-800 border border-slate-700 rounded-2xl px-4 py-4 text-xl text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                value={formData.birthDate}
-                onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
-              />
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <span className="block text-xs text-slate-500 mb-1 px-1">년</span>
+                  <select
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-2 py-4 text-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none text-center"
+                    value={birthYear}
+                    onChange={(e) => updateBirthDate(e.target.value, birthMonth, birthDay)}
+                  >
+                    <option value="">--</option>
+                    {years.map(y => <option key={y} value={String(y)}>{y}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <span className="block text-xs text-slate-500 mb-1 px-1">월</span>
+                  <select
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-2 py-4 text-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none text-center"
+                    value={birthMonth}
+                    onChange={(e) => updateBirthDate(birthYear, e.target.value, birthDay)}
+                  >
+                    <option value="">--</option>
+                    {months.map(m => <option key={m} value={String(m)}>{m}월</option>)}
+                  </select>
+                </div>
+                <div>
+                  <span className="block text-xs text-slate-500 mb-1 px-1">일</span>
+                  <select
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-2 py-4 text-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none text-center"
+                    value={birthDay}
+                    onChange={(e) => updateBirthDate(birthYear, birthMonth, e.target.value)}
+                  >
+                    <option value="">--</option>
+                    {getDaysInMonth(birthYear, birthMonth).map(d => <option key={d} value={String(d)}>{d}일</option>)}
+                  </select>
+                </div>
+              </div>
             </div>
 
             <div className="flex gap-3 pt-8">
