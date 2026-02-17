@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnalysisResult } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
@@ -19,6 +19,22 @@ const ScoreBadge: React.FC<{ label: string; score: number; color: string; icon?:
 
 const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
   const [shareStatus, setShareStatus] = useState<'idle' | 'copied' | 'sending'>('idle');
+  const [revealStep, setRevealStep] = useState(0);
+
+  // Auto-advance reveal steps with dramatic pacing
+  useEffect(() => {
+    const delays = [0, 800, 1600, 2400, 3400, 4400];
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    delays.forEach((delay, idx) => {
+      if (idx === 0) return; // step 0 is immediate
+      timers.push(setTimeout(() => setRevealStep(idx), delay));
+    });
+
+    return () => timers.forEach(t => clearTimeout(t));
+  }, []);
+
+  const skipReveal = () => setRevealStep(5);
 
   const chartData = result.goldenPeaks.map(p => ({
     name: `${p.year}년`,
@@ -58,10 +74,20 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
   };
 
   return (
-    <div className="space-y-12 animate-fade-in pb-24 w-full max-w-5xl mx-auto">
+    <div className="space-y-12 animate-fade-in pb-24 w-full max-w-5xl mx-auto relative">
+
+      {/* Skip button - only show during reveal animation */}
+      {revealStep < 5 && (
+        <button
+          onClick={skipReveal}
+          className="fixed bottom-6 left-6 z-50 px-4 py-2 rounded-full glass-panel border border-slate-700/50 hover:border-amber-500/50 text-slate-400 hover:text-amber-500 text-xs font-medium transition-all duration-300"
+        >
+          전체 보기 &raquo;
+        </button>
+      )}
 
       {/* 2026 Forecast Card - The "Decree" Style */}
-      <section className="glass-panel rounded-3xl overflow-hidden relative">
+      <section className={`glass-panel rounded-3xl overflow-hidden relative transition-all duration-700 ${revealStep >= 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-50"></div>
 
         <div className="p-8 md:p-10">
@@ -72,7 +98,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
                 <span className="text-amber-500 text-2xl">❖</span> 2026년 커리어 전략서
               </h2>
             </div>
-            <div className="flex gap-2">
+            <div className={`flex gap-2 transition-all duration-500 ${revealStep >= 5 ? 'opacity-100' : 'opacity-0'}`}>
               <button
                 onClick={handleEmail}
                 className="p-3 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 rounded-xl text-amber-500 transition-all hover:scale-105 active:scale-95"
@@ -100,7 +126,8 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
             </div>
           </header>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          {/* Step 0: Scores */}
+          <div className={`grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 transition-all duration-700 ${revealStep >= 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <ScoreBadge label="사주" score={result.analysis2026.sajuScore} color="text-amber-400" icon="📜" />
             <ScoreBadge label="점성술" score={result.analysis2026.astrologyScore} color="text-blue-400" icon="✨" />
             <ScoreBadge label="수비학" score={result.analysis2026.numerologyScore} color="text-purple-400" icon="🔢" />
@@ -110,7 +137,8 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-10">
+          {/* Step 1: Opportunity & Risk */}
+          <div className={`grid md:grid-cols-2 gap-6 lg:gap-8 mb-10 transition-all duration-700 ${revealStep >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <div className="space-y-4">
               <h3 className="text-lg font-serif font-bold text-amber-200/90 flex items-center">
                 <span className="w-1 h-6 bg-amber-500/50 mr-3 rounded-full"></span> 포착해야 할 기회
@@ -133,7 +161,8 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
             </div>
           </div>
 
-          <div className="relative p-8 bg-gradient-to-br from-amber-900/20 to-slate-900/50 rounded-2xl border border-amber-500/20 overflow-hidden">
+          {/* Step 2: Strategy */}
+          <div className={`relative p-8 bg-gradient-to-br from-amber-900/20 to-slate-900/50 rounded-2xl border border-amber-500/20 overflow-hidden transition-all duration-700 ${revealStep >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <div className="absolute top-0 right-0 p-4 opacity-10">
               <svg width="100" height="100" viewBox="0 0 100 100" fill="currentColor" className="text-amber-500 animate-[spin_60s_linear_infinite]">
                 <path d="M50 0 L100 50 L50 100 L0 50 Z" />
@@ -149,8 +178,8 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
         </div>
       </section>
 
-      {/* Golden Era Visualization */}
-      <section className="glass-panel rounded-3xl p-8 md:p-10 relative overflow-hidden">
+      {/* Step 3: Golden Era Visualization */}
+      <section className={`glass-panel rounded-3xl p-8 md:p-10 relative overflow-hidden transition-all duration-700 ${revealStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <h2 className="text-3xl font-serif font-bold text-slate-100 mb-8 flex items-center">
           <span className="text-amber-500 mr-3">📈</span> 당신의 인생 황금기
         </h2>
@@ -188,9 +217,10 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
           </ResponsiveContainer>
         </div>
 
-        <div className="space-y-6">
+        {/* Step 4: Golden Peaks Details */}
+        <div className={`space-y-6 transition-all duration-700 ${revealStep >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           {result.goldenPeaks.map((peak, idx) => (
-            <div key={idx} className="group relative bg-slate-900/30 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-6 transition-all duration-500 hover:bg-slate-800/50">
+            <div key={idx} className="group relative bg-slate-900/30 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-6 transition-all duration-500 hover:bg-slate-800/50" style={{ transitionDelay: revealStep === 4 ? `${idx * 150}ms` : '0ms' }}>
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-shrink-0 flex md:flex-col items-center gap-3">
                   <div className={`w-12 h-12 flex items-center justify-center font-bold text-xl rounded-full shadow-lg border-2 ${idx === 0 ? 'bg-amber-500 text-slate-900 border-amber-300' : 'bg-slate-800 text-slate-400 border-slate-600'
@@ -224,8 +254,8 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
         </div>
       </section>
 
-      {/* Final Summary Card */}
-      <section className="glass-panel rounded-3xl p-10 text-center space-y-6 relative overflow-hidden">
+      {/* Step 5: Final Summary Card */}
+      <section className={`glass-panel rounded-3xl p-10 text-center space-y-6 relative overflow-hidden transition-all duration-700 ${revealStep >= 5 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-50"></div>
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
