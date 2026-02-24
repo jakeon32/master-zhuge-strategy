@@ -53,7 +53,7 @@ const App: React.FC = () => {
         {step === 'input' && (
           <div className="animate-fade-in flex flex-col items-center">
             <header className="text-center mb-12 space-y-4 relative z-10">
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-500 to-amber-200 tracking-tight drop-shadow-sm animate-fade-in">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-500 to-amber-200 tracking-tight drop-shadow-sm animate-fade-in">
                 제갈량의 <span className="text-slate-100 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">천기누설</span>
               </h1>
               <div className="flex items-center justify-center gap-4 opacity-70">
