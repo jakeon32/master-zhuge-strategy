@@ -109,7 +109,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
           {/* Step header */}
           <div className="p-5 pb-3 sm:p-8 sm:pb-4 text-center">
             <span className="text-amber-500/80 font-serif text-sm tracking-widest uppercase">Revelation {stepTitles[revealStep].num}</span>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100 mt-2">{stepTitles[revealStep].title}</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-slate-100 mt-2">{stepTitles[revealStep].title}</h2>
             <p className="text-slate-500 text-sm mt-1">{stepTitles[revealStep].sub}</p>
           </div>
 
@@ -269,7 +269,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
           <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 gap-4">
             <div>
               <div className="text-amber-500/70 text-xs tracking-[0.2em] font-serif uppercase mb-2">Strategic Analysis</div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-100 flex items-center gap-3">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-slate-100 flex items-center gap-3">
                 <span className="text-amber-500 text-2xl">❖</span> 2026년 커리어 전략서
               </h2>
             </div>
@@ -348,7 +348,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
 
       {/* Golden Era Visualization */}
       <section className="glass-panel rounded-3xl p-5 sm:p-8 md:p-10 relative overflow-hidden">
-        <h2 className="text-3xl font-serif font-bold text-slate-100 mb-6 sm:mb-8 flex items-center">
+        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-100 mb-6 sm:mb-8 flex items-center">
           <span className="text-amber-500 mr-3">📈</span> 당신의 인생 황금기
         </h2>
 
@@ -422,7 +422,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
 
-        <h3 className="text-2xl font-serif font-bold text-slate-100 mb-2">천기누설 총평</h3>
+        <h3 className="text-xl sm:text-2xl font-serif font-bold text-slate-100 mb-2">천기누설 총평</h3>
         <div className="w-16 h-1 bg-amber-500/30 mx-auto rounded-full"></div>
         <p className="text-slate-200 leading-relaxed text-lg font-light italic px-4 md:px-12">
           "{result.summary}"

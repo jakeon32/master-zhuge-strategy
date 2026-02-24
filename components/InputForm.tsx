@@ -149,7 +149,7 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
               </svg>
             </div>
             <div className="space-y-4">
-              <h2 className="text-3xl font-serif font-bold text-slate-100 drop-shadow-md">어서오십시오, 주군.</h2>
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-100 drop-shadow-md">어서오십시오, 주군.</h2>
               <p className="text-slate-300/80 leading-relaxed px-4 font-light tracking-wide">
                 저는 당신의 승리를 위해 북극성을 읽는 책사 <span className="text-amber-400 font-medium">제갈량</span>입니다. <br />
                 천명을 분석하여 최선의 전략을 제안하겠습니다.
@@ -163,10 +163,10 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
           <div className="w-full space-y-10 animate-fade-in text-center">
             <div className="space-y-3">
               <span className="text-amber-500/80 font-serif text-sm tracking-widest uppercase">Question {stepLabels.name.num}</span>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.name.question}</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.name.question}</h2>
             </div>
             <div className="px-4">
-              <input autoFocus type="text" className="w-full bg-transparent text-center text-4xl font-serif font-bold py-4 text-amber-500 input-underline focus:outline-none placeholder:text-slate-700/50" placeholder="이름 혹은 별칭" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} onKeyDown={(e) => e.key === 'Enter' && formData.name && goNext()} />
+              <input autoFocus type="text" className="w-full bg-transparent text-center text-2xl sm:text-4xl font-serif font-bold py-4 text-amber-500 input-underline focus:outline-none placeholder:text-slate-700/50" placeholder="이름 혹은 별칭" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} onKeyDown={(e) => e.key === 'Enter' && formData.name && goNext()} />
             </div>
             {formData.name && <p className="text-slate-500 text-sm animate-fade-up"><span className="text-amber-400">{formData.name}</span> 주군이시군요. 반갑습니다.</p>}
             <div className="flex gap-4 pt-4">
@@ -180,7 +180,7 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
           <div className="w-full space-y-10 animate-fade-in text-center">
             <div className="space-y-3">
               <span className="text-amber-500/80 font-serif text-sm tracking-widest uppercase">Question {stepLabels.gender.num}</span>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.gender.question}</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.gender.question}</h2>
             </div>
             <div className="flex gap-6 justify-center">
               <button onClick={() => setFormData({ ...formData, gender: 'male' })} className={`w-32 h-32 rounded-2xl border-2 transition-all duration-300 flex flex-col items-center justify-center gap-2 ${formData.gender === 'male' ? 'border-amber-500 bg-amber-500/10 scale-105 shadow-[0_0_20px_rgba(245,158,11,0.2)]' : 'border-slate-700 hover:border-slate-500'}`}>
@@ -205,11 +205,11 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
           <div className="w-full space-y-8 animate-fade-in text-center">
             <div className="space-y-3">
               <span className="text-amber-500/80 font-serif text-sm tracking-widest uppercase">Question {stepLabels.year.num}</span>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.year.question}</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.year.question}</h2>
             </div>
             <div className="max-w-xs mx-auto">
               <div className="bg-slate-800/30 rounded-xl p-4 border border-slate-700/50 hover:border-amber-500/30 transition-colors">
-                <select className="w-full bg-transparent text-3xl text-amber-500 font-serif font-bold focus:outline-none appearance-none text-center cursor-pointer" value={birthYear} onChange={(e) => setBirthYear(e.target.value)}>
+                <select className="w-full bg-transparent text-2xl sm:text-3xl text-amber-500 font-serif font-bold focus:outline-none appearance-none text-center cursor-pointer" value={birthYear} onChange={(e) => setBirthYear(e.target.value)}>
                   <option value="" className="bg-slate-900 text-slate-500">출생 연도</option>
                   {years.map(y => <option key={y} value={String(y)} className="bg-slate-900 text-slate-100">{y}년</option>)}
                 </select>
@@ -233,7 +233,7 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
           <div className="w-full space-y-8 animate-fade-in text-center">
             <div className="space-y-3">
               <span className="text-amber-500/80 font-serif text-sm tracking-widest uppercase">Question {stepLabels.monthday.num}</span>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.monthday.question}</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.monthday.question}</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto">
               <div className="bg-slate-800/30 rounded-xl p-3 border border-slate-700/50 hover:border-amber-500/30 transition-colors">
@@ -269,11 +269,11 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
           <div className="w-full space-y-8 animate-fade-in text-center">
             <div className="space-y-3">
               <span className="text-amber-500/80 font-serif text-sm tracking-widest uppercase">Question {stepLabels.time.num}</span>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.time.question}</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.time.question}</h2>
               <p className="text-slate-500 text-sm">시간을 모르시면 아래 "모름" 버튼을 누르십시오</p>
             </div>
             <div className="max-w-xs mx-auto">
-              <input type="time" className="w-full bg-transparent text-center text-3xl py-3 px-4 border border-slate-600 rounded-xl text-amber-500 focus:border-amber-500 focus:outline-none transition-all" value={formData.birthTime || '12:00'} onChange={(e) => setFormData({ ...formData, birthTime: e.target.value })} />
+              <input type="time" className="w-full bg-transparent text-center text-2xl sm:text-3xl py-3 px-4 border border-slate-600 rounded-xl text-amber-500 focus:border-amber-500 focus:outline-none transition-all" value={formData.birthTime || '12:00'} onChange={(e) => setFormData({ ...formData, birthTime: e.target.value })} />
             </div>
             {timePillar && (
               <div className="animate-fade-up space-y-2 py-2">
@@ -293,10 +293,10 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
           <div className="w-full space-y-8 animate-fade-in text-center">
             <div className="space-y-3">
               <span className="text-amber-500/80 font-serif text-sm tracking-widest uppercase">Final Question</span>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.place.question}</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-slate-100">{stepLabels.place.question}</h2>
             </div>
             <div className="px-4">
-              <input autoFocus required type="text" placeholder="예: 서울, 부산, 뉴욕" className="w-full bg-transparent text-center text-3xl font-serif font-bold py-4 text-amber-500 input-underline focus:outline-none placeholder:text-slate-700/50" value={formData.birthPlace} onChange={(e) => setFormData({ ...formData, birthPlace: e.target.value })} onKeyDown={(e) => e.key === 'Enter' && formData.birthPlace && handleSubmit()} />
+              <input autoFocus required type="text" placeholder="예: 서울, 부산, 뉴욕" className="w-full bg-transparent text-center text-2xl sm:text-3xl font-serif font-bold py-4 text-amber-500 input-underline focus:outline-none placeholder:text-slate-700/50" value={formData.birthPlace} onChange={(e) => setFormData({ ...formData, birthPlace: e.target.value })} onKeyDown={(e) => e.key === 'Enter' && formData.birthPlace && handleSubmit()} />
             </div>
             {formData.birthPlace && (
               <p className="text-slate-500 text-sm animate-fade-up">
