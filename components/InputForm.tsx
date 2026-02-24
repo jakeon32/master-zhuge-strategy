@@ -122,7 +122,7 @@ const InputForm: React.FC<Props> = ({ onSubmit }) => {
   const timePillar = formData.birthTime ? getTimePillar(Number(formData.birthTime.split(':')[0])) : null;
 
   return (
-    <div className="w-full max-w-lg mx-auto min-h-[550px] flex flex-col justify-between p-8 rounded-3xl glass-panel relative overflow-hidden transition-all duration-500">
+    <div className="w-full max-w-lg mx-auto min-h-[550px] flex flex-col justify-between p-5 sm:p-8 rounded-3xl glass-panel relative overflow-hidden transition-all duration-500">
       <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-amber-500/30 rounded-tl-xl pointer-events-none"></div>
       <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-amber-500/30 rounded-tr-xl pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-amber-500/30 rounded-bl-xl pointer-events-none"></div>

@@ -107,14 +107,14 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
           <div className="absolute inset-0 rounded-3xl pointer-events-none transition-all duration-1000" style={{ boxShadow: `inset 0 0 ${revealStep * 15}px rgba(245, 158, 11, ${revealStep * 0.02})` }} />
 
           {/* Step header */}
-          <div className="p-8 pb-4 text-center">
+          <div className="p-5 pb-3 sm:p-8 sm:pb-4 text-center">
             <span className="text-amber-500/80 font-serif text-sm tracking-widest uppercase">Revelation {stepTitles[revealStep].num}</span>
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100 mt-2">{stepTitles[revealStep].title}</h2>
             <p className="text-slate-500 text-sm mt-1">{stepTitles[revealStep].sub}</p>
           </div>
 
           {/* Step content */}
-          <div className="flex-1 p-8 pt-4 flex flex-col justify-center">
+          <div className="flex-1 p-5 pt-3 sm:p-8 sm:pt-4 flex flex-col justify-center">
             {revealStep === 0 && (
               <div className="animate-fade-in space-y-6">
                 <div className="grid grid-cols-2 gap-4">
@@ -133,20 +133,20 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
             )}
 
             {revealStep === 1 && (
-              <div className="animate-fade-in space-y-6">
-                <div className="space-y-4">
+              <div className="animate-fade-in space-y-4 sm:space-y-6">
+                <div className="space-y-3">
                   <h3 className="text-lg font-serif font-bold text-amber-200/90 flex items-center">
                     <span className="w-1 h-6 bg-amber-500/50 mr-3 rounded-full"></span> 포착해야 할 기회
                   </h3>
-                  <div className="bg-slate-900/40 p-5 rounded-2xl border border-slate-700/50">
+                  <div className="bg-slate-900/40 p-3 sm:p-5 rounded-2xl border border-slate-700/50">
                     <p className="text-slate-300 leading-relaxed font-light">{result.analysis2026.opportunity}</p>
                   </div>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <h3 className="text-lg font-serif font-bold text-red-200/90 flex items-center">
                     <span className="w-1 h-6 bg-red-500/50 mr-3 rounded-full"></span> 주의해야 할 위기
                   </h3>
-                  <div className="bg-slate-900/40 p-5 rounded-2xl border border-slate-700/50">
+                  <div className="bg-slate-900/40 p-3 sm:p-5 rounded-2xl border border-slate-700/50">
                     <p className="text-slate-300 leading-relaxed font-light">{result.analysis2026.risk}</p>
                   </div>
                 </div>
@@ -155,7 +155,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
 
             {revealStep === 2 && (
               <div className="animate-fade-in">
-                <div className="relative p-8 bg-gradient-to-br from-amber-900/20 to-slate-900/50 rounded-2xl border border-amber-500/20 overflow-hidden">
+                <div className="relative p-4 sm:p-8 bg-gradient-to-br from-amber-900/20 to-slate-900/50 rounded-2xl border border-amber-500/20 overflow-hidden">
                   <div className="absolute top-0 right-0 p-4 opacity-10">
                     <svg width="100" height="100" viewBox="0 0 100 100" fill="currentColor" className="text-amber-500 animate-[spin_60s_linear_infinite]">
                       <path d="M50 0 L100 50 L50 100 L0 50 Z" />
@@ -215,7 +215,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
 
             {revealStep === 4 && (
               <div className="animate-fade-in space-y-6">
-                <div className="relative p-6 bg-gradient-to-br from-amber-900/10 to-slate-900/30 rounded-2xl border border-amber-500/20 overflow-hidden">
+                <div className="relative p-4 sm:p-6 bg-gradient-to-br from-amber-900/10 to-slate-900/30 rounded-2xl border border-amber-500/20 overflow-hidden">
                   <div className="absolute -top-10 -left-10 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl"></div>
                   <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
                   <h3 className="text-xl font-serif font-bold text-slate-100 mb-3 text-center relative z-10">천기누설 총평</h3>
@@ -229,7 +229,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
           </div>
 
           {/* Navigation */}
-          <div className="p-8 pt-4">
+          <div className="p-5 pt-3 sm:p-8 sm:pt-4">
             <div className="flex gap-3">
               {revealStep > 0 && (
                 <button onClick={goPrev} className="flex-1 py-4 rounded-xl border border-slate-700 hover:bg-slate-800 text-slate-400 font-medium transition-colors">
@@ -265,8 +265,8 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
       <section className="glass-panel rounded-3xl overflow-hidden relative">
         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-50"></div>
 
-        <div className="p-8 md:p-10">
-          <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div className="p-5 sm:p-8 md:p-10">
+          <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 gap-4">
             <div>
               <div className="text-amber-500/70 text-xs tracking-[0.2em] font-serif uppercase mb-2">Strategic Analysis</div>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-100 flex items-center gap-3">
@@ -311,26 +311,26 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-10">
-            <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-10">
+            <div className="space-y-3">
               <h3 className="text-lg font-serif font-bold text-amber-200/90 flex items-center">
                 <span className="w-1 h-6 bg-amber-500/50 mr-3 rounded-full"></span> 포착해야 할 기회
               </h3>
-              <div className="bg-slate-900/40 p-5 rounded-2xl border border-slate-700/50">
+              <div className="bg-slate-900/40 p-3 sm:p-5 rounded-2xl border border-slate-700/50">
                 <p className="text-slate-300 leading-relaxed font-light">{result.analysis2026.opportunity}</p>
               </div>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <h3 className="text-lg font-serif font-bold text-red-200/90 flex items-center">
                 <span className="w-1 h-6 bg-red-500/50 mr-3 rounded-full"></span> 주의해야 할 위기
               </h3>
-              <div className="bg-slate-900/40 p-5 rounded-2xl border border-slate-700/50">
+              <div className="bg-slate-900/40 p-3 sm:p-5 rounded-2xl border border-slate-700/50">
                 <p className="text-slate-300 leading-relaxed font-light">{result.analysis2026.risk}</p>
               </div>
             </div>
           </div>
 
-          <div className="relative p-8 bg-gradient-to-br from-amber-900/20 to-slate-900/50 rounded-2xl border border-amber-500/20 overflow-hidden">
+          <div className="relative p-4 sm:p-8 bg-gradient-to-br from-amber-900/20 to-slate-900/50 rounded-2xl border border-amber-500/20 overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10">
               <svg width="100" height="100" viewBox="0 0 100 100" fill="currentColor" className="text-amber-500 animate-[spin_60s_linear_infinite]">
                 <path d="M50 0 L100 50 L50 100 L0 50 Z" />
@@ -347,8 +347,8 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
       </section>
 
       {/* Golden Era Visualization */}
-      <section className="glass-panel rounded-3xl p-8 md:p-10 relative overflow-hidden">
-        <h2 className="text-3xl font-serif font-bold text-slate-100 mb-8 flex items-center">
+      <section className="glass-panel rounded-3xl p-5 sm:p-8 md:p-10 relative overflow-hidden">
+        <h2 className="text-3xl font-serif font-bold text-slate-100 mb-6 sm:mb-8 flex items-center">
           <span className="text-amber-500 mr-3">📈</span> 당신의 인생 황금기
         </h2>
 
@@ -387,7 +387,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
 
         <div className="space-y-6">
           {result.goldenPeaks.map((peak, idx) => (
-            <div key={idx} className="group relative bg-slate-900/30 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-6 transition-all duration-500 hover:bg-slate-800/50">
+            <div key={idx} className="group relative bg-slate-900/30 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-4 sm:p-6 transition-all duration-500 hover:bg-slate-800/50">
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-shrink-0 flex md:flex-col items-center gap-3">
                   <div className={`w-12 h-12 flex items-center justify-center font-bold text-xl rounded-full shadow-lg border-2 ${idx === 0 ? 'bg-amber-500 text-slate-900 border-amber-300' : 'bg-slate-800 text-slate-400 border-slate-600'}`}>
@@ -417,7 +417,7 @@ const AnalysisDashboard: React.FC<Props> = ({ result, onReset }) => {
       </section>
 
       {/* Final Summary Card */}
-      <section className="glass-panel rounded-3xl p-10 text-center space-y-6 relative overflow-hidden">
+      <section className="glass-panel rounded-3xl p-5 sm:p-8 md:p-10 text-center space-y-6 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-50"></div>
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
